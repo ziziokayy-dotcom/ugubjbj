@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сиқырлы Қалпақ — жасақ жинау</title>
+<style>
+:root{--bg:#f0edfb;--panel:#fff;--text:#1a1638;--muted:#6b6790;--line:#dcd7f3;--vio:#5b3df5;--vio2:#3d27b8;--gold:#ffd23f;--mint:#12b886;--rose:#f0446b;--card:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#120f2b;--panel:#1c1842;--text:#f1eeff;--muted:#a29fcc;--line:#322d66;--card:#262057}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#120f2b;--panel:#1c1842;--text:#f1eeff;--muted:#a29fcc;--line:#322d66;--card:#262057}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:500 15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+h1{margin:0;font-size:26px;font-weight:900;letter-spacing:-.5px}h1 small{display:block;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0}
+.tabs{display:flex;background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:9px 14px;font-weight:700;background:var(--line);color:var(--text)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tabs button{background:none}.tabs button.on{background:var(--vio);color:#fff}
+.grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:16px}
+.row{display:flex;gap:8px;margin-bottom:10px}
+input,textarea{font:inherit;width:100%;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:11px;padding:9px 11px}
+.btn{background:var(--vio);color:#fff}.btn.gold{background:var(--gold);color:#241c00}.warn{background:none;color:var(--rose);border:2px solid var(--line)}.warn.arm{background:var(--rose);color:#fff;border-color:var(--rose)}
+#list{max-height:340px;overflow:auto;display:grid;gap:6px;margin:10px 0}
+.it{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;background:var(--bg);font-size:14px}
+.it i{font-style:normal;min-width:24px;height:24px;border-radius:7px;background:var(--line);display:grid;place-items:center;font-size:12px;font-weight:800}
+.it span{flex:1;min-width:0;overflow-wrap:anywhere}.it.done{opacity:.55}.it.done i{background:var(--mint);color:#fff}
+.it button{padding:2px 8px;background:none;color:var(--muted)}
+.head{display:flex;justify-content:space-between;align-items:center;font-weight:800}
+.pill{background:var(--gold);color:#241c00;border-radius:99px;padding:3px 12px;font-weight:800;font-size:13px}
+.stage{position:relative;height:520px;display:flex;justify-content:center;overflow:hidden;border-radius:20px;background:radial-gradient(ellipse at 50% 100%,#4a2fd6 0,#241a6e 55%,#17104a 100%)}
+.card{position:absolute;bottom:150px;left:50%;width:min(86%,400px);margin-left:calc(min(86%,400px)/-2);z-index:1;text-align:center;background:var(--gold);color:#241c00;border-radius:20px;padding:18px 16px 20px;box-shadow:0 18px 40px rgba(0,0,0,.35);opacity:0;transform:translateY(70px) scale(.25);transition:transform .7s cubic-bezier(.3,1.4,.5,1),opacity .35s}
+.card.up{opacity:1;transform:translateY(-150px) scale(1)}.card.pop{animation:pop .5s}
+@keyframes pop{50%{transform:translateY(-150px) scale(1.08)}}
+.card b{display:block;font-size:13px;font-weight:800;opacity:.75}
+.card .n{font-size:clamp(32px,7vw,50px);font-weight:900;line-height:1.05;margin:4px 0;overflow-wrap:anywhere}.card .s{font-size:15px;font-weight:700;min-height:20px}
+.hat{position:absolute;bottom:62px;z-index:2;width:250px;height:250px;pointer-events:none}.hat.w{animation:wob .38s infinite}
+@keyframes wob{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+.go{position:absolute;bottom:14px;z-index:3;padding:14px 34px;font-size:18px;font-weight:900;background:var(--gold);color:#241c00;border-radius:16px;box-shadow:0 8px 0 #b8941a}
+.go:active{transform:translateY(4px);box-shadow:0 4px 0 #b8941a}.go:disabled{opacity:.7}
+.got{margin-top:14px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{background:var(--bg);border:2px solid var(--line);border-radius:99px;padding:3px 11px;font-size:13px;font-weight:700}
+.ctl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.step{display:flex;align-items:center;gap:8px}.step b{min-width:26px;text-align:center;font-size:20px}
+.teams{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.team{border-radius:18px;padding:14px;color:#fff;background:var(--c)}.team h3{margin:0 0 8px;font-size:19px;font-weight:900}
+.team div{background:rgba(255,255,255,.2);border-radius:9px;padding:5px 9px;margin-top:5px;font-size:14px;font-weight:700;animation:in .4s backwards}
+@keyframes in{from{opacity:0;transform:scale(.7)}}
+.empty{color:var(--muted);padding:40px 10px;text-align:center}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,90px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:14px;font-weight:700;transition:.3s;z-index:60}#toast.on{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){.hat.w,.card.pop{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Сиқырлы Қалпақ<small>Қалпақ жасаққа адам шақырады</small></h1>
+  <div class="tabs" role="tablist"><button id="t1" class="on" onclick="setMode('one')">Бір-бірден</button><button id="t2" onclick="setMode('team')">Командалар</button><button id="snd" onclick="toggleSnd()">Дыбыс: қосулы</button></div>
+</header>
+<div class="grid">
+  <aside class="panel">
+    <div class="head">Оқушылар тізімі <span class="pill" id="cnt"></span></div>
+    <div class="row" style="margin-top:12px"><input id="inp" placeholder="Аты-жөнін жазыңыз" onkeydown="if(event.key==='Enter')addOne()"><button class="btn" onclick="addOne()">Қосу</button></div>
+    <div id="list"></div>
+    <details><summary style="cursor:pointer;font-weight:700;margin-bottom:8px">Тізімді топтап өзгерту</summary>
+      <textarea id="bulk" rows="6" placeholder="Әр оқушы жаңа жолда"></textarea>
+      <div class="row" style="margin-top:8px"><button class="btn" onclick="saveBulk()">Тізімді сақтау</button></div>
+    </details>
+    <div class="row" style="flex-wrap:wrap;margin:10px 0 0"><button onclick="resetAll()">Қалпаққа қайта салу</button><button class="warn" id="def" onclick="arm(this,loadDef,'Расталсын ба?')">Бастапқы тізім</button></div>
+  </aside>
+  <main>
+    <section id="one">
+      <div class="stage">
+        <div class="card" id="card"><b id="lab">Жасаққа қосылады</b><div class="n" id="nm">?</div><div class="s" id="sb"></div></div>
+        <svg class="hat" id="hat" viewBox="0 0 300 300" aria-hidden="true">
+          <ellipse cx="150" cy="150" rx="70" ry="20" fill="#0d0a2b"/>
+          <path d="M85 150L95 60C95 45 205 45 205 60L215 150Z" fill="#6a4cff"/>
+          <path d="M88 150L97 62C97 50 203 50 203 62L212 150Z" fill="#4b30e0"/>
+          <path d="M87 140C110 155 190 155 213 140L215 150C190 165 110 165 85 150Z" fill="#ffd23f"/>
+          <rect x="135" y="137" width="30" height="20" rx="4" fill="#ffd23f" stroke="#7a5b00" stroke-width="2"/>
+          <path d="M40 150C40 130 260 130 260 150C260 175 40 175 40 150Z" fill="#6a4cff"/>
+          <path d="M45 152C45 137 255 137 255 152C255 172 45 172 45 152Z" fill="#0d0a2b"/>
+        </svg>
+        <button class="go" id="go" onclick="draw()">Шақыру</button>
+      </div>
+      <div class="got panel">
+        <div class="head">Жасаққа қосылғандар <span class="row" style="margin:0"><button onclick="undo()">Соңғысын қайтару</button></span></div>
+        <div class="chips" id="chips"></div>
+      </div>
+    </section>
+    <section id="team" hidden>
+      <div class="panel">
+        <div class="ctl">
+          <div class="step"><button onclick="tc(-1)" aria-label="Азайту">−</button><b id="tn">3</b><button onclick="tc(1)" aria-label="Көбейту">+</button><span>команда</span></div>
+          <button class="btn gold" onclick="makeTeams()">Командаларға бөлу</button>
+        </div>
+        <div id="teams" class="teams"><div class="empty">Команда санын таңдап, қалпаққа тізімді араластыруға мүмкіндік беріңіз.</div></div>
+      </div>
+    </section>
+  </main>
+</div>
+</div>
+<canvas id="fx"></canvas><div id="toast"></div>
+<script>
+const DEF=["Айнабаев Нұралы Бахтиярұлы","Аманқос Майя Жасұланқызы","Ахметқызы Айнамкөз","Әбдрашит Ақнұр Қанатқызы","Әлихан Нұрболат Төреханұлы","Бақбергенова Сымбат Білімжанқызы","Бисенбай Гүлсезім Жанболатқызы","Дүйсенбек Ақгүл Қанатбекқызы","Ибраева Азиза Орынбасарқызы","Қалдыбек Бақберген Қайратұлы","Қалмырзақызы Айгүл","Қандыбек Сымбат Ғаниқызы","Қойшыбаева Аида Айдоскызы","Қуатқызы Тоғжан","Маратова Аяулым Берікқызы","Марданқызы Нұрай","Мектепбаева Нұрай Нұрлыбекқызы","Нұрымбетқызы Динара","Омық Айзере Манатқызы","Өмірзақ Бексұлтан Нұрлыбекұлы","Пернебаев Ерсултан Ерболұлы","Рахат Наз Асауқызы","Таңсықбай Еркеназ Русланқызы","Ташкенбаева Қарақат Бағдатқызы","Төлебиева Ақпейіл Өмірәліқызы","Тұрғанбай Кәусар Қайратқызы","Шукенов Нұржан Ғалымжанұлы"];
+const KEY="qalpaq-roster-v1",$=id=>document.getElementById(id);
+let all=load()||DEF.slice(),pool=all.slice(),got=[],busy=false,snd=true,nT=3,ac=null;
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY));return Array.isArray(v)&&v.length?v:null}catch(e){return null}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(all))}catch(e){}}
+function split(n){const p=n.trim().split(/\s+/);const main=p[1]||p[0];const sub=p[1]?[p[0],...p.slice(2)].join(" "):"";return[main,sub]}
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2200)}
+function beep(type){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const f=type==="win"?[523,659,784,1047]:[300+Math.random()*180];f.forEach((q,i)=>{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+i*.08;o.type=type==="win"?"sine":"triangle";o.frequency.value=q;g.gain.setValueAtTime(type==="win"?.09:.04,t);g.gain.exponentialRampToValueAtTime(.001,t+(type==="win"?.35:.05));o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.4)})}catch(e){}}
+function toggleSnd(){snd=!snd;$("snd").textContent="Дыбыс: "+(snd?"қосулы":"өшірулі")}
+function setMode(m){$("one").hidden=m!=="one";$("team").hidden=m!=="team";$("t1").classList.toggle("on",m==="one");$("t2").classList.toggle("on",m==="team")}
+function render(){
+  $("cnt").textContent="Қалпақта: "+pool.length+" / "+all.length;
+  $("list").innerHTML="";
+  all.forEach((n,i)=>{const d=document.createElement("div");d.className="it"+(pool.includes(n)?"":" done");
+    const a=document.createElement("i");a.textContent=pool.includes(n)?i+1:"✓";const s=document.createElement("span");s.textContent=n;
+    const b=document.createElement("button");b.textContent="×";b.setAttribute("aria-label","Жою");b.onclick=()=>removeAt(i);
+    d.append(a,s,b);$("list").append(d)});
+  $("chips").innerHTML=got.length?"":'<span style="color:var(--muted)">Әлі ешкім шақырылған жоқ</span>';
+  got.forEach((n,i)=>{const c=document.createElement("span");c.className="chip";c.textContent=(i+1)+". "+split(n)[0];c.title=n;$("chips").append(c)});
+  $("go").textContent=pool.length?(got.length?"Келесіні шақыру":"Шақыру"):"Қайта бастау";
+}
+function addOne(){const v=$("inp").value.trim();if(!v)return;all.push(v);pool.push(v);$("inp").value="";save();render();toast("Қосылды: "+split(v)[0])}
+function removeAt(i){const n=all[i];all.splice(i,1);pool=pool.filter(x=>x!==n);got=got.filter(x=>x!==n);save();render()}
+function saveBulk(){const l=$("bulk").value.split("\n").map(s=>s.trim()).filter(Boolean);if(!l.length){toast("Тізім бос");return}all=l;save();resetAll();$("bulk").value="";toast(l.length+" оқушы сақталды")}
+function resetAll(){pool=all.slice();got=[];$("card").className="card";render()}
+function loadDef(){all=DEF.slice();save();resetAll();toast("Бастапқы тізім жүктелді")}
+function arm(b,fn,txt){if(b.classList.contains("arm")){b.classList.remove("arm");b.textContent=b.dataset.o;fn();return}b.dataset.o=b.textContent;b.textContent=txt;b.classList.add("arm");setTimeout(()=>{b.classList.remove("arm");if(b.dataset.o)b.textContent=b.dataset.o},3000)}
+function show(n){const[a,b]=split(n);$("nm").textContent=a;$("sb").textContent=b}
+function draw(){
+  if(busy)return;
+  if(!pool.length){resetAll();toast("Қалпақ қайтадан толды");return}
+  busy=true;const c=$("card"),h=$("hat"),g=$("go");
+  c.className="card";void c.offsetWidth;$("lab").textContent="Қалпақ ойланып жатыр…";$("sb").textContent="";
+  h.classList.add("w");g.disabled=true;c.classList.add("up");
+  const iv=setInterval(()=>{show(pool[Math.floor(Math.random()*pool.length)]);beep("tick")},80);
+  setTimeout(()=>{
+    clearInterval(iv);const i=Math.floor(Math.random()*pool.length),n=pool.splice(i,1)[0];got.push(n);
+    show(n);h.classList.remove("w");c.classList.add("pop");$("lab").textContent="Жасаққа қосылды!";
+    beep("win");boom();render();g.disabled=false;busy=false;
+    if(!pool.length)toast("Бәрі жасақта!");
+  },1800);
+}
+function undo(){if(busy||!got.length)return;pool.push(got.pop());$("card").className="card";render()}
+function tc(d){nT=Math.max(2,Math.min(8,nT+d));$("tn").textContent=nT}
+const TN=["Бүркіттер","Жолбарыстар","Қасқырлар","Арыстандар","Түлкілер","Аюлар","Құландар","Барыстар"],TC=["#5b3df5","#e8590c","#0b8f6d","#c2255c","#1971c2","#9c36b6","#b08800","#495057"];
+function makeTeams(){
+  const a=all.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+  const box=$("teams");box.innerHTML="";const tms=[];
+  for(let t=0;t<nT;t++){const d=document.createElement("div");d.className="team";d.style.setProperty("--c",TC[t]);const h=document.createElement("h3");h.textContent=TN[t];d.append(h);box.append(d);tms.push(d)}
+  a.forEach((n,i)=>{setTimeout(()=>{const m=document.createElement("div");m.textContent=n;tms[i%nT].append(m);beep("tick")},i*110)});
+  setTimeout(()=>{beep("win");boom()},a.length*110+100);
+}
+function boom(){
+  const c=$("fx"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;
+  const P=Array.from({length:130},()=>({x:innerWidth/2,y:innerHeight*.55,vx:(Math.random()-.5)*16,vy:-Math.random()*15-3,s:5+Math.random()*6,r:Math.random()*6,k:["#ffd23f","#5b3df5","#12b886","#f0446b","#fff"][Math.floor(Math.random()*5)]}));
+  let f=0;(function step(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.4;p.x+=p.vx;p.y+=p.vy;p.r+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.k;x.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);x.restore()});if(++f<110)requestAnimationFrame(step);else x.clearRect(0,0,c.width,c.height)})();
+}
+render();
+</script>
+</body>
+</html>
